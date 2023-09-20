@@ -8,6 +8,8 @@ function App() {
   const [webcamRunning, setWebcamRunning] = useState(false)
   // const [captureVideo, setCaptureVideo] = useState(false)
 
+  const [errorMsg, setErrorMsg] = useState('')
+
   const canvasRef = useRef()
   const videoRef = useRef()
   const videoHeight = 480
@@ -47,6 +49,7 @@ function App() {
         })
         .catch(err => {
           console.error("error:", err)
+          setErrorMsg(err)
         })
     }
   }
@@ -116,6 +119,19 @@ function App() {
 
   // captureVideo ?
   //   modelsLoaded ?
+
+  if(!webcamRunning) {
+    return (
+      <h1>Turn on webcam</h1>
+    )
+  }
+
+  if(errorMsg) {
+    return (
+      <h1>Error: ${errorMsg}</h1>
+    )
+  }
+
   return (
     <div>
       {/* <div style={{ textAlign: 'center', padding: '10px' }}> */}
