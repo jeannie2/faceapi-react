@@ -1,0 +1,15 @@
+canvas {
+  position: absolute;
+}
+
+div#wrapper {
+  display: flex;
+  justify-content: center;
+  padding: 10px;
+}
+
+/* video {
+  -webkit-transform: scaleX(-1) !important;
+  transform: scaleX(-1) !important;
+  transform: rotateY(180deg);
+} */
