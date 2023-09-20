@@ -120,20 +120,24 @@ function App() {
   // captureVideo ?
   //   modelsLoaded ?
 
-  if(!webcamRunning) {
-    return (
-      <h1>Turn on webcam</h1>
-    )
-  }
+  // if(!webcamRunning) {
+  //   return (
+  //     <h1>Turn on webcam</h1>
+  //   )
+  // }
 
-  if(errorMsg) {
-    return (
-      <h1>Error: ${errorMsg}</h1>
-    )
-  }
+  // if(errorMsg) {
+  //   return (
+  //     <h1>Error: ${errorMsg}</h1>
+  //   )
+  // }
 
   return (
+
+
     <div>
+    {!webcamRunning ? <h1>NO PINs</h1> : <h1>Yes pins</h1>}
+
       {/* <div style={{ textAlign: 'center', padding: '10px' }}> */}
         {/* {
           webcamRunning && modelsLoaded ?
