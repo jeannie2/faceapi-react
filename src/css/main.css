@@ -2,14 +2,13 @@ canvas {
   position: absolute;
 }
 
-div#wrapper {
+#container {
+  height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 10px;
+  align-items: center;
 }
 
-/* video {
-  -webkit-transform: scaleX(-1) !important;
-  transform: scaleX(-1) !important;
-  transform: rotateY(180deg);
-} */
+#error-text {
+  color: red;
+}
