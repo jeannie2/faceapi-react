@@ -6,7 +6,7 @@ function App() {
     <>
       <FaceApiPage />
     </>
-  );
+  )
 }
 
 export default App
