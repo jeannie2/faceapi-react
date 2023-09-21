@@ -1,5 +1,5 @@
-import { useEffect, useState, useRef } from 'react'
 import * as faceapi from 'face-api.js'
+import { useEffect, useState, useRef } from 'react'
 
 import "../css/main.css"
 
