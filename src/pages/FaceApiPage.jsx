@@ -4,13 +4,12 @@ import { useEffect, useState, useRef } from 'react'
 import "../css/main.css"
 
 const FaceApiPage = () => {
-  const [modelsLoaded, setModelsLoaded] = useState(false)
   const [webcamRunning, setWebcamRunning] = useState(false)
+  const [modelsLoaded, setModelsLoaded] = useState(false)
   const [errorMsg, setErrorMsg] = useState({
     errorStatus: false,
     errorMessage: ''
   })
-
   const canvasRef = useRef()
   const videoRef = useRef()
   const videoHeight = 480
@@ -25,7 +24,7 @@ const FaceApiPage = () => {
 
   const startWebcam = () => {
     // setCaptureVideo(true);
-    if(!webcamRunning) {
+    // if(!webcamRunning) {
       // setWebcamRunning(true)
       navigator.mediaDevices.getUserMedia({ video:true })
         .then(stream => {
@@ -42,7 +41,7 @@ const FaceApiPage = () => {
             errorMessage: err.message
           })
         })
-    }
+    // }
   }
 
   const loadModels = async () => {
