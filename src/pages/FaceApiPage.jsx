@@ -103,7 +103,6 @@ const FaceApiPage = () => {
     <>
       { errorMsg.errorStatus ? ( <h3 id="error-text"> Error: {errorMsg.errorMessage} </h3> ) : null }
       {
-        webcamRunning ? (
           modelsLoaded ? (
             <div id="container">
               <video ref={videoRef} height={videoHeight} width={videoWidth} onPlay={runFaceDetection}/>
@@ -112,10 +111,27 @@ const FaceApiPage = () => {
           ) : (
             <div>Loading...</div>
           )
-        ) : null
       }
     </>
-  );
+  )
+
+  // return (
+  //   <>
+  //     { errorMsg.errorStatus ? ( <h3 id="error-text"> Error: {errorMsg.errorMessage} </h3> ) : null }
+  //     {
+  //       webcamRunning ? (
+  //         modelsLoaded ? (
+  //           <div id="container">
+  //             <video ref={videoRef} height={videoHeight} width={videoWidth} onPlay={runFaceDetection}/>
+  //             <canvas ref={canvasRef} />
+  //           </div>
+  //         ) : (
+  //           <div>Loading...</div>
+  //         )
+  //       ) : null
+  //     }
+  //   </>
+  // )
 }
 
 export default FaceApiPage
