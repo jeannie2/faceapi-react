@@ -52,9 +52,10 @@ const FaceApiPage = () => {
       faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
       faceapi.nets.ageGenderNet.loadFromUri(MODEL_URL),
 
-    ])
-    setModelsLoaded(true),
-    runFaceDetection()
+    ]).then(() => {
+      setModelsLoaded(true),
+      runFaceDetection()
+    })
   }
 
   const interpolateAgePredictions = (age) => {

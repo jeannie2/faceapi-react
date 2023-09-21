@@ -20,41 +20,42 @@ const FaceApiPage = () => {
   useEffect(() => {
     startWebcam()
     videoRef && loadModels()
-    // eslint-disable-next-line
   }, [])
 
   const startWebcam = () => {
-    // setCaptureVideo(true);
-    if(!webcamRunning) {
-      // setWebcamRunning(true)
-      navigator.mediaDevices.getUserMedia({ video:true })
-        .then(stream => {
-          setWebcamRunning(true)
-          if(videoRef.current) {
-            let video = videoRef.current
-            video.srcObject = stream
-            video.play()
-          }
-        })
-        .catch(err => {
-          setErrorMsg( {
-            errorStatus: true,
-            errorMessage: err.message
+      // setCaptureVideo(true);
+      if(!webcamRunning) {
+        // setWebcamRunning(true)
+        navigator.mediaDevices.getUserMedia({ video:true })
+          .then(stream => {
+            setWebcamRunning(true)
+            if(videoRef.current) {
+              let video = videoRef.current
+              video.srcObject = stream
+              video.play()
+            }
           })
-        })
+          .catch(err => {
+            setErrorMsg( {
+              errorStatus: true,
+              errorMessage: err.message
+            })
+          })
+      }
     }
-  }
 
-  const loadModels = async () => {
+  const loadModels = () => {
+    // const loadModels = async () => {
     const MODEL_URL = '/models'
 
-    await Promise.all([
+    Promise.all([
       faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
       faceapi.nets.ageGenderNet.loadFromUri(MODEL_URL),
 
-    ])
-    setModelsLoaded(true),
-    runFaceDetection()
+    ]).then(
+      setModelsLoaded(true),
+      runFaceDetection()
+    )
   }
 
   const interpolateAgePredictions = (age) => {
