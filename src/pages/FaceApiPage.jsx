@@ -17,7 +17,7 @@ const FaceApiPage = () => {
 
   useEffect(() => {
     startWebcam()
-    videoRef && loadModels()
+    loadModels()
     // eslint-disable-next-line
   }, [])
 
@@ -46,7 +46,7 @@ const FaceApiPage = () => {
       faceapi.nets.ageGenderNet.loadFromUri(MODEL_URL),
 
     ])
-    setModelsLoaded(true),
+    setModelsLoaded(true)
     runFaceDetection()
   }
 
