@@ -4,7 +4,6 @@ import { useEffect, useState, useRef } from 'react'
 import "../css/main.css"
 
 const FaceApiPage = () => {
-  const [webcamRunning, setWebcamRunning] = useState(false)
   const [modelsLoaded, setModelsLoaded] = useState(false)
   const [errorMsg, setErrorMsg] = useState({
     errorStatus: false,
@@ -23,25 +22,20 @@ const FaceApiPage = () => {
   }, [])
 
   const startWebcam = () => {
-    // setCaptureVideo(true);
-    // if(!webcamRunning) {
-      // setWebcamRunning(true)
-      navigator.mediaDevices.getUserMedia({ video:true })
-        .then(stream => {
-          setWebcamRunning(true)
-          if(videoRef.current) {
-            let video = videoRef.current
-            video.srcObject = stream
-            video.play()
-          }
-        })
-        .catch(err => {
-          setErrorMsg( {
-            errorStatus: true,
-            errorMessage: err.message
-          })
-        })
-    // }
+    navigator.mediaDevices.getUserMedia({ video:true })
+    .then(stream => {
+      if(videoRef.current) {
+        let video = videoRef.current
+        video.srcObject = stream
+        video.play()
+      }
+    })
+    .catch(err => {
+      setErrorMsg( {
+        errorStatus: true,
+        errorMessage: err.message
+      })
+    })
   }
 
   const loadModels = async () => {
@@ -103,35 +97,17 @@ const FaceApiPage = () => {
     <>
       { errorMsg.errorStatus ? ( <h3 id="error-text"> Error: {errorMsg.errorMessage} </h3> ) : null }
       {
-          modelsLoaded ? (
-            <div id="container">
-              <video ref={videoRef} height={videoHeight} width={videoWidth} onPlay={runFaceDetection}/>
-              <canvas ref={canvasRef} />
-            </div>
-          ) : (
-            <div>Loading...</div>
-          )
+        modelsLoaded ? (
+          <div id="container">
+            <video ref={videoRef} height={videoHeight} width={videoWidth} onPlay={runFaceDetection}/>
+            <canvas ref={canvasRef} />
+          </div>
+        ) : (
+          <div>Loading...</div>
+        )
       }
     </>
   )
-
-  // return (
-  //   <>
-  //     { errorMsg.errorStatus ? ( <h3 id="error-text"> Error: {errorMsg.errorMessage} </h3> ) : null }
-  //     {
-  //       webcamRunning ? (
-  //         modelsLoaded ? (
-  //           <div id="container">
-  //             <video ref={videoRef} height={videoHeight} width={videoWidth} onPlay={runFaceDetection}/>
-  //             <canvas ref={canvasRef} />
-  //           </div>
-  //         ) : (
-  //           <div>Loading...</div>
-  //         )
-  //       ) : null
-  //     }
-  //   </>
-  // )
 }
 
 export default FaceApiPage
