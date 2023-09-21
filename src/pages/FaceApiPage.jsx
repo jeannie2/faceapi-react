@@ -99,7 +99,7 @@ const FaceApiPage = () => {
       {
         modelsLoaded ? (
           <div id="container">
-            <video ref={videoRef} height={videoHeight} width={videoWidth} onPlay={runFaceDetection}/>
+            <video ref={videoRef} height={videoHeight} width={videoWidth}/>
             <canvas ref={canvasRef} />
           </div>
         ) : (
