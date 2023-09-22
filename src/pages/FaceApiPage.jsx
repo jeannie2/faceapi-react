@@ -48,7 +48,6 @@ const FaceApiPage = () => {
 
     ])
     setModelsLoaded(true)
-    // runFaceDetection()
   }
 
   const interpolateAgePredictions = (age) => {
