@@ -18,6 +18,7 @@ const FaceApiPage = () => {
   useEffect(() => {
     startWebcam()
     loadModels()
+    runFaceDetection()
     // eslint-disable-next-line
   }, [])
 
@@ -47,7 +48,7 @@ const FaceApiPage = () => {
 
     ])
     setModelsLoaded(true)
-    runFaceDetection()
+    // runFaceDetection()
   }
 
   const interpolateAgePredictions = (age) => {
@@ -64,7 +65,7 @@ const FaceApiPage = () => {
   }
 
   const runFaceDetection = () => {
-    setInterval(async () => {
+    const interval = setInterval(async () => {
       if (canvasRef && canvasRef.current) {
         canvasRef.current.innerHTML = faceapi.createCanvas(videoRef.current);
         const displaySize = {
@@ -91,11 +92,14 @@ const FaceApiPage = () => {
         }
       }
     }, 50)
+
+    return () => clearInterval(interval)
   }
 
   return (
     <>
-      { errorMsg.errorStatus ? ( <h3 id="error-text"> Error: {errorMsg.errorMessage} </h3> ) : null }
+      <h2>Face-api age estimation project</h2>
+      { errorMsg.errorStatus ? ( <h4 id="error-text"> Error: {errorMsg.errorMessage} </h4> ) : null }
       {
         modelsLoaded ? (
           <div id="container">
